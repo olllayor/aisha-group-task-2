@@ -16,10 +16,11 @@ nltk.download('stopwords')
 
 # Ma'lumotlarni yuklash
 df = pd.read_csv('archive/train.csv', names=['polarity', 'title', 'text'])
+test_df = pd.read_csv('archive/test.csv', names=['polarity', 'title', 'text']) # Added line to read test.csv
 
 # Birinchi qatorlarni va ma'lumotlar haqida asosiy ma'lumotlarni ko'rsatish
 
-print(df.head())
+# print(df.head())
 
 # print(df.info())
 
@@ -39,6 +40,7 @@ def preprocess_text(text):
 
 # 'text' ustuniga qayta ishlangan matnni qo'shish
 df['processed_text'] = df['text'].apply(preprocess_text)
+test_df['processed_text'] = test_df['text'].apply(preprocess_text)
 
 print(df.head())
 
@@ -88,4 +90,5 @@ plt.title('Confusion Matrix')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.show()
+
 
